@@ -12,4 +12,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2560"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.groups = {
+      "dev-machine-hosts" => ["dev-machine"]
+    }
+  end
+
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http = 'http://httpproxy.amicillc.com:8080'
+    config.proxy.https = config.proxy.http
+    config.proxy.no_proxy = 'localhost,127.0.0.1'
+  end
 end
