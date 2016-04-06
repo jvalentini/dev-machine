@@ -1,0 +1,9 @@
+---
+- name: Install common dev tools
+  hosts: all
+  roles:
+    - { role: jvalentini.common, tags: common }
+  tasks:
+    - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}
+    - name: install emacs version manager (evm)
+      gem: name=evm state=latest
