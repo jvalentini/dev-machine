@@ -72,6 +72,10 @@
         - autotools-dev
       become: true
       tags: apt, apt_install
+    - git: repo=https://github.com/rbenv/rbenv.git dest={{ rbenv_dest }}
+    - shell: cd {{ rbenv_dest }} && src/configure && make -C src
+    - git: repo=https://github.com/rbenv/ruby-build.git dest={{ rbenv_dest }}/plugins/ruby-build
+    - command: rbenv install 2.3.0
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
