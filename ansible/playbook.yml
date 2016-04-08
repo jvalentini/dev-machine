@@ -92,5 +92,6 @@
         - guard-pytest
         - rubocop
         - ruby-lint
+        - evm
       tags: rubygems
     - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}/dotfiles
