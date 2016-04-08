@@ -82,3 +82,12 @@
     - command: npm install
       become: true
       tags: tern
+    - gem: name={{ item }} state=latest
+      with_items:
+        - bundler
+        - libnotify
+        - guard
+        - guard-pytest
+        - rubocop
+        - ruby-lint
+      tags: rubygems
