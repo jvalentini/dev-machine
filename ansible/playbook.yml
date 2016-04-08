@@ -21,6 +21,57 @@
       command: apt-get upgrade -y
       become: true
       tags: apt, apt_upgrade
+    - name: install apt packages
+      apt: name={{ item }} state=latest update_cache=yes
+      with_items:
+        - build-essential
+        - software-properties-common
+        - python-software-properties
+        - ubuntu-restricted-extras
+        - dkms
+        - terminator
+        - curl
+        - git
+        - corkscrew
+        - zsh
+        - xmonad
+        - xmobar
+        - xscreensaver
+        - offlineimap
+        - gnome-panel
+        - xmonad
+        - xmobar
+        - xscreensaver
+        - libaio1
+        - linux-headers-generic
+        - virtualbox-dkms
+        - virtualbox-5.0
+        - python
+        - python-dev
+        - python-pip
+        - pylint
+        - ipython
+        - rbenv
+        - ruby-dev
+        - redis-server
+        - sqlite
+        - pidgin
+        - pidgin-plugin-pack
+        - openssh-client
+        - openssh-server
+        - php5
+        - htop
+        - default-jre
+        - jq
+        - vlc
+        - vlc-plugin-notify
+        - silversearcher-ag
+        - gcc-multilib
+        - autoconf
+        - automake
+        - autotools-dev
+      become: true
+      tags: apt, apt_install
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
