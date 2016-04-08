@@ -6,9 +6,8 @@
   vars:
     tern_dest: "{{ home }}/tern"
   tasks:
-    - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}
-    - name: install emacs version manager (evm)
-      gem: name=evm state=latest
+    - command: lsb_release -s -c
+      register: ubuntu_release
     - name: add apt repos
       apt_repository: repo={{ item }} state=present update_cache=yes
       with_items:
@@ -18,6 +17,7 @@
         - ppa:amandeepgrewal/notifyosdconfig
         - ppa:mc3man/trusty-media
         - "deb http://download.virtualbox.org/virtualbox/debian trusty contrib"
+        - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_release.stdout }} contrib"
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
