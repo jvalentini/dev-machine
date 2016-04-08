@@ -15,6 +15,8 @@
         - ppa:amandeepgrewal/notifyosdconfig
         - ppa:mc3man/trusty-media
         - "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+      become: true
+      tags: apt_repo
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
