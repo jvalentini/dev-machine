@@ -6,8 +6,6 @@
   vars:
     tern_dest: "{{ home }}/tern"
   tasks:
-    - command: lsb_release -s -c
-      register: ubuntu_release
     - name: add apt repos
       apt_repository: repo={{ item }} state=present update_cache=yes
       with_items:
@@ -16,8 +14,7 @@
         - ppa:leolik/leolik
         - ppa:amandeepgrewal/notifyosdconfig
         - ppa:mc3man/trusty-media
-        - "deb http://download.virtualbox.org/virtualbox/debian trusty contrib"
-        - "deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_release.stdout }} contrib"
+        - "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
