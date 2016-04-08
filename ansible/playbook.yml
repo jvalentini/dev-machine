@@ -14,6 +14,7 @@
         - ppa:leolik/leolik
         - ppa:amandeepgrewal/notifyosdconfig
         - ppa:mc3man/trusty-media
+        - ppa:mattn/growl-for-linux
         - "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
       become: true
       tags: apt, apt_repo
@@ -70,6 +71,7 @@
         - autoconf
         - automake
         - autotools-dev
+        - growl-for-linux
       become: true
       tags: apt, apt_install
     - git: repo=https://github.com/rbenv/rbenv.git dest={{ rbenv_dest }}
