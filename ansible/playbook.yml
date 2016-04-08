@@ -6,7 +6,7 @@
   vars:
     tern_dest: "{{ home }}/tern"
   tasks:
-    - name: add apt repos
+    - name: add apt repos and update
       apt_repository: repo={{ item }} state=present update_cache=yes
       with_items:
         - ppa:git-core/ppa
@@ -16,7 +16,11 @@
         - ppa:mc3man/trusty-media
         - "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
       become: true
-      tags: apt_repo
+      tags: apt, apt_repo
+    - name: apt-get upgrade
+      command: apt-get upgrade -y
+      become: true
+      tags: apt, apt_upgrade
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
