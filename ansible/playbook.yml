@@ -3,7 +3,14 @@
   hosts: all
   roles:
     - { role: jvalentini.common, tags: common }
+  vars:
+    tern_dest: "{{ home }}/tern"
   tasks:
     - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}
     - name: install emacs version manager (evm)
       gem: name=evm state=latest
+    - name: install tern, a js code analyzer
+      git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
+      tags: tern
+    - command: npm install
+      tags: tern
