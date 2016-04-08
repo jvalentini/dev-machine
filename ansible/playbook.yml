@@ -9,6 +9,15 @@
     - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}
     - name: install emacs version manager (evm)
       gem: name=evm state=latest
+    - name: add apt repos
+      apt_repository: repo={{ item }} state=present update_cache=yes
+      with_items:
+        - ppa:git-core/ppa
+        - ppa:ansible/ansible
+        - ppa:leolik/leolik
+        - ppa:amandeepgrewal/notifyosdconfig
+        - ppa:mc3man/trusty-media
+        - "deb http://download.virtualbox.org/virtualbox/debian trusty contrib"
     - name: install tern, a js code analyzer
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
