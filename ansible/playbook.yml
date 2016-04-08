@@ -1,8 +1,8 @@
 ---
 - name: Install common dev tools
-  hosts: all
   roles:
     - { role: jvalentini.common, tags: common }
+  hosts: dev-machine
   vars:
     tern_dest: "{{ home }}/tern"
   tasks:
