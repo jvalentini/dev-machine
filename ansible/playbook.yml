@@ -91,3 +91,4 @@
         - rubocop
         - ruby-lint
       tags: rubygems
+    - git: repo=https://github.com/jvalentini/dotfiles.git dest={{ home }}/dotfiles
