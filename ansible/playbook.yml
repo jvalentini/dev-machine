@@ -13,4 +13,5 @@
       git: repo=https://github.com/ternjs/tern.git dest={{ tern_dest }}
       tags: tern
     - command: npm install
+      become: true
       tags: tern
