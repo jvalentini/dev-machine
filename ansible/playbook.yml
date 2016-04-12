@@ -90,6 +90,8 @@
         - libnotify
         - guard
         - guard-pytest
+        - guard-bundler
+        - guard-rspec
         - rubocop
         - ruby-lint
         - evm
